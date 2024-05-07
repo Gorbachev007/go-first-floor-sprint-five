@@ -35,7 +35,6 @@ func (t Training) meanSpeed() float64 {
 
 // Calories возвращает количество потраченных килокалорий на тренировке (базовая реализация).
 func (t Training) Calories() float64 {
-	fmt.Println("using not reimplemented calories")
 	return 0 // Этот метод будет переопределен для каждого типа тренировки.
 }
 
@@ -97,7 +96,7 @@ func (r Running) TrainingInfo() InfoMessage {
 		Duration:     r.Duration,
 		Distance:     r.distance(),
 		Speed:        r.meanSpeed(),
-		Calories:     r.Calories(), // Calls Running's own Calories method
+		Calories:     r.Calories(), 
 	}
 }
 
@@ -116,7 +115,6 @@ const (
 
 // Calories возвращает количество потраченных килокалорий при ходьбе.
 func (w Walking) Calories() float64 {
-	fmt.Println("using reimplemented")
 	speedInMps := w.meanSpeed() * KmHInMsec
 	return (CaloriesWeightMultiplier*w.Weight + (math.Pow(speedInMps, 2)/w.Height)*CaloriesSpeedHeightMultiplier*w.Weight) * w.Duration.Hours() * MinInHours
 }
@@ -127,7 +125,7 @@ func (w Walking) TrainingInfo() InfoMessage {
 		Duration:     w.Duration,
 		Distance:     w.distance(),
 		Speed:        w.meanSpeed(),
-		Calories:     w.Calories(), // Calls Walking's own Calories method
+		Calories:     w.Calories(), 
 	}
 }
 
@@ -162,7 +160,7 @@ func (s Swimming) TrainingInfo() InfoMessage {
 		Duration:     s.Duration,
 		Distance:     s.distance(),
 		Speed:        s.meanSpeed(),
-		Calories:     s.Calories(), // Calls Swimming's own Calories method
+		Calories:     s.Calories(), 
 	}
 }
 
